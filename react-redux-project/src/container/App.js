@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import uuid from 'uuid';
+//import uuid from 'uuid';
 import Projects from './../components/Projects';
 import AddProject from './../components/AddProject';
 

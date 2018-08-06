@@ -18,7 +18,7 @@ class ProjectItem extends Component {
 	}
 
   render() {
-	if(this.props.project.editing == true){
+	if(this.props.project.editing === true){
 		let categoryOptions = this.props.categories.map(category => {
 			return (
 				<option key={category} value={category}>{category}</option>

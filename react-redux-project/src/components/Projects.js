@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProjectItem from './ProjectItem';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import { fetchProjects, deleteProject, editProject, updateProject } from './../actions/projectActions';
 
 class Projects extends Component {	

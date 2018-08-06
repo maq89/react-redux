@@ -1,5 +1,4 @@
 const projectReducer = (state = [], action) => {
-	
 	switch(action.type){
 		case 'FETCH_PROJECT_FULFILLED':
 			let fetchProjects = action.payload.data.result;
@@ -34,7 +33,9 @@ const projectReducer = (state = [], action) => {
 			updateProjects[updateIndex].category = updatedProject.category;
 			updateProjects[updateIndex].editing = false;
 			state = updateProjects;
-			break;		
+			break;	
+		default:
+			break;	
 	}
 	
 	return state;
