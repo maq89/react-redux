@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProjectItem from './ProjectItem';
 import PropTypes from 'prop-types';
-import { deleteProject, editProject, updateProject } from './../actions/projectActions';
+import { fetchProjects, deleteProject, editProject, updateProject } from './../actions/projectActions';
 
 class Projects extends Component {	
+	
+	componentWillMount(){
+		this.props.fetchProjects();
+	}
 	
 	render() {
 		let projectItems;
@@ -49,6 +53,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
+		fetchProjects: () => {
+			dispatch(fetchProjects());
+		},
 		deleteProject: (projectId) => {
 			dispatch(deleteProject(projectId));
 		},

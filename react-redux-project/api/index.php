@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 $servername = "localhost";
 $username = "root";
@@ -34,7 +35,11 @@ function addProject($conn, $title, $category){
 	$sql = "INSERT INTO projects (title, category) VALUES ('".$title."', '".$category."')";
 
 	if ($conn->query($sql) === TRUE) {
-		return "New Project created successfully";
+		return [
+			'id' 		=> $conn->insert_id,
+			'title' 	=> $title,
+			'category' 	=> $category
+		];
 	} else {
 		return "Error: " . $sql . "<br>" . $conn->error;
 	}	
@@ -44,7 +49,11 @@ function editProject($conn, $title, $category, $id){
 	$sql = "UPDATE projects SET title='".$title."', category='".$category."' WHERE id=".$id;
 
 	if ($conn->query($sql) === TRUE) {
-		return "New Project updated successfully";
+		return [
+			'id' 		=> $id,
+			'title' 	=> $title,
+			'category' 	=> $category
+		];
 	} else {
 		return "Error: " . $sql . "<br>" . $conn->error;
 	}	
@@ -54,7 +63,7 @@ function deleteProject($conn, $id){
 	$sql = "DELETE FROM projects WHERE id=".$id;
 
 	if ($conn->query($sql) === TRUE) {
-		return "Project deleted successfully";
+		return $id;
 	} else {
 		return "Error deleting record: " . $conn->error;
 	}

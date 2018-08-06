@@ -1,29 +1,18 @@
-import uuid from 'uuid';
-const initialProjects = [
-				{
-					id: uuid.v4(),
-					title : 'Project 1',
-					category : 'Category 1',
-					editing: false
-				},
-				{
-					id: uuid.v4(),
-					title : 'Project 2',
-					category : 'Category 2',
-					editing: false
-				},
-				{
-					id: uuid.v4(),
-					title : 'Project 3',
-					category : 'Category 3',
-					editing: false
-				}
-			];
-const projectReducer = (state = initialProjects, action) => {
+const projectReducer = (state = [], action) => {
 	
 	switch(action.type){
+		case 'FETCH_PROJECT_FULFILLED':
+			let fetchProjects = action.payload.data.result;
+			let newfetchProjects = fetchProjects.map(project => {
+				project.editing = false;
+				return project;
+			});
+			state = newfetchProjects;
+			break;
 		case 'ADD_PROJECT_FULFILLED':
-			state = state.concat(action.payload);
+			let addProjects = action.payload.data.result;
+			addProjects.editing = false;
+			state = state.concat(addProjects);
 			break;
 		case 'DELETE_PROJECT_FULFILLED':
 			let deleteProjects = [...state];
@@ -38,10 +27,11 @@ const projectReducer = (state = initialProjects, action) => {
 			state = editProjects;
 			break;	
 		case 'UPDATE_PROJECT_FULFILLED':
+			let updatedProject = action.payload.data.result;
 			let updateProjects = [...state];
-			let updateIndex = updateProjects.findIndex(x => x.id === action.payload.id);
-			updateProjects[updateIndex].title = action.payload.title;
-			updateProjects[updateIndex].category = action.payload.category;
+			let updateIndex = updateProjects.findIndex(x => x.id === updatedProject.id);
+			updateProjects[updateIndex].title = updatedProject.title;
+			updateProjects[updateIndex].category = updatedProject.category;
 			updateProjects[updateIndex].editing = false;
 			state = updateProjects;
 			break;		

@@ -6,10 +6,10 @@ SINGLE
 http://localhost/todo-api?action=view&id=<id>
 
 ADD:
-http://localhost/todo-api?action=add&title=<title>
+http://localhost/todo-api?action=add&title=<title>&category=<category>
 
 EDIT:
-http://localhost/todo-api?action=edit&title=<title>&id=<id>
+http://localhost/todo-api?action=edit&title=<title>&category=<category>&id=<id>
 
 DELETE
 http://localhost/todo-api?action=delete&id=<id>
