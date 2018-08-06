@@ -1,0 +1,19 @@
+
+LIST:
+http://localhost/todo-api
+
+SINGLE
+http://localhost/todo-api?action=view&id=<id>
+
+ADD:
+http://localhost/todo-api?action=add&title=<title>
+
+EDIT:
+http://localhost/todo-api?action=edit&title=<title>&id=<id>
+
+DELETE
+http://localhost/todo-api?action=delete&id=<id>
+
+
+START SERVER
+php -S localhost:8000
